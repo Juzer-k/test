@@ -16,10 +16,13 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-SECRET_KEY = env('SECRET_KEY')
-DEBUG = env.bool('DEBUG', default=False)
-ALLOWED_HOSTS = ['.onrender.com', 'localhost']  # Add your Render URL later
 
+DEBUG = env.bool('DEBUG', default=False)
+if DEBUG:
+    environ.Env.read_env()
+
+SECRET_KEY = env('SECRET_KEY')
+ALLOWED_HOSTS = ['.onrender.com', 'localhost']  # Add your Render URL later
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
