@@ -1,0 +1,71 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}View orders{% endblock title %}
+{% block body %}
+<div class="container p-5">
+    <h3 class="fw-bold text-center">Your Orders</h3>
+    <hr>
+    {% for order_placed in order_placed %}
+    <div class="container my-5">
+        <a href="{% url 'order-detail' order_placed.id%}" class="text-decoration-none text-dark">
+            <div class="card mb-3 w-100 mx-auto">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="{{order_placed.product.product_image_1.url}}" class="img-thumbnail w-100"
+                            style="height:150px;" alt="...">
+                    </div>
+                    <div class="col-md-4">
+                        <div class="card-body">
+                            <p class="card-title fs-4">{{order_placed.product.product_name | capfirst}} <span>
+                                </span></p><br>
+                            <small class="card-text">Quantity : <span
+                                    class="fw-bold">{{order_placed.quantity}}</span></small><br>
+                        </div>
+                    </div>
+                   
+                    <div class="col-md-4 fw-bold">
+                        <p class="">Order Status: {{order_placed.order_status}}</p>
+                        {% if order_placed.order_status == 'Order Confirm' %}
+                        <div class="progress">
+                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width: 0%" aria-valuenow="0" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        {% endif %}
+                        {% if order_placed.order_status == 'Packed' %}
+                        <div class="progress">
+                            <div class="progress-bar bg-info progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width: 30%" aria-valuenow="30" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        {% endif %}
+                        {% if order_placed.order_status == 'Shipped' %}
+                        <div class="progress">
+                            <div class="progress-bar bg-danger progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width: 60%" aria-valuenow="60" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        {% endif %}
+                        {% if order_placed.order_status == 'Out of Delivery' %}
+                        <div class="progress">
+                            <div class="progress-bar bg-warning progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width: 80%" aria-valuenow="80" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        {% endif %}
+                        {% if order_placed.order_status == 'Delivered' %}
+                        <div class="progress">
+                            <div class="progress-bar bg-success progress-bar-striped progress-bar-animated"
+                                role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0"
+                                aria-valuemax="100"></div>
+                        </div>
+                        {% endif %}
+                        <br>
+                    </div>
+                </div>
+            </div>
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock body %}

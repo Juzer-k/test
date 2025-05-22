@@ -1,0 +1,9 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}Empty Cart{% endblock title %}
+{% block body %}
+<div class="container">
+    <img src="{% static 'images/emptycart.gif'%}" class="mx-auto d-block" alt="Your Cart Is Empty">
+    <h3 class="fw-bold text-center">Your cart Is Empty!</h3>
+</div>
+{% endblock body %}

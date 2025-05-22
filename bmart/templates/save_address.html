@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Saved Address{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+    <h3 class="fw-bold text-center">Saved Address</h3>
+    <div class="container row row-cols-1 row-cols-md-3 g-4">
+        <a href="{% url 'add-new-address'%}" class="text-decoration-none text-center">
+            <div class="col card">
+                    <div class="card-body align-self-center">
+                        + Add New Address
+                    </div>
+            </div>
+        </a>
+        {% for saved_address in save_address %}
+        <div class="col card">
+            <div class="card-body">
+                <h5 class="card-title">{{saved_address.customer_name | capfirst}}</h5>
+                <p class="card-text">{{saved_address.area_locality | capfirst}} , {{saved_address.city | capfirst}}
+                </p>
+                <p>{{saved_address.state | capfirst}} - {{saved_address.zip_code}}</p>
+                <p class="fs-6">Mobile Number - {{saved_address.mobile_number}}</p>
+
+                <a href="{% url 'update-address' saved_address.id %}" class="btn btn-primary btn-sm">Edit</a>
+
+                <form action="{% url 'delete-save-address' saved_address.id %}" method="post" class="d-inline">
+                    {% csrf_token %}
+                <button type="sumbit" class="btn btn-danger btn-sm">Delete</button>
+            </form>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock body %}

@@ -1,0 +1,17 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}CheckOut{% endblock title %}
+{% block body %}
+<div class="container">
+    <img src="{% static 'gif/password_reset_complete.gif' %}" class="mx-auto d-block"
+        alt="Password Change Successfully"><br><br>
+    <hr>
+    <h5 class="text-center fw-bold"> ORDER PLACED SUCCESSFULLY !!!</h5><br>
+    <h5 class="text-center fw-bold"> THANK YOU FOR SHOPPING FROM </h5><br>
+    <h3 class="text-center fw-bold"> BURHANI MART</h3>
+    <hr>
+    <div class="container my-5">
+        <a class="btn btn-primary w-100" href="{% url 'order-view' %}" role="button">Check Your Order Status</a>
+    </div>
+</div>
+{% endblock body %}

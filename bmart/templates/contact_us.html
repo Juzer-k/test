@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Contact Us{% endblock title %}
+{% block body %}
+<div class="container">
+    <h1 class="fw-bold text-center mt-5">Contact Us &#9742;</h1>
+    <hr>
+    <form action="" method="post" novalidate>
+        <div class="card mb-3 w-75 mx-auto">
+        {% csrf_token %}
+        {% if messages %}
+        {% for message in messages %}
+        <p {% if message.tags %} class="alert alert-{{message.tags}} mb-5" {% endif %}>{{message}}</p>
+        {% endfor %}
+        {% endif %}
+            {% if form.non_field_errors %}
+            {% for error in form.non_field_errors %}
+            <p class="alert alert-danger my-3">{{error}}</p>
+            {% endfor %}
+            {% endif %}
+            <div class="card-body">
+                <div class="container">
+                    {% for fm in form %}
+                    <div class="form-group mb-3">
+                        {{fm.label_tag}} {{fm}} <small class="text-danger">{{fm.errors|striptags}}</small>
+                    </div>
+                    {% endfor %}
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary text-center">Send Query</button>
+                    </div><br>
+                </div>
+              
+            </div>
+        </div>
+       
+    </form>
+    <hr>
+</div>
+{% endblock body %}

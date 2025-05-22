@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Cloths{% endblock title %}
+{% block body %}
+
+
+<div class="container-fluid my-5">
+<div class="row row-cols-2 row-cols-md-6 g-4">
+    {% for product in cloth_category %}
+
+    <div class="col">
+      <a href="{% url 'product-detail' product.id%}" class="text-decoration-none text-dark">
+        <div class="card">
+          <img src="{{product.product_image_1.url}}" class="card-img-top" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{product.product_name | capfirst}}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+</div>
+  {% endblock body %}

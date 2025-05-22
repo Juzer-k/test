@@ -1,0 +1,34 @@
+{%extends 'base.html'%}
+{% load static %}
+{% block title %}Search Product{% endblock title %}
+
+{% block body %}
+<div class="container my-3">
+    <h4>Search Result For : <span class="fw-bold">{{search_product_query | capfirst}}</span></h4>
+    <br>
+    {% if product_search_match|length < 1%}
+    <div class="container">
+        <img src="{% static 'images/no-result.gif'%}" class="mx-auto d-block img-fluid" alt="">
+        <br>
+        <p class="fw-bold text-center fs-5"> No Search Result Found For : {{search_product_query | capfirst}}</p>
+    </div>
+    {% endif %}
+    <div class="row row-cols-2 row-cols-md-4 g-4">
+
+        {% for product in product_search_match %}
+        <div class="col my-4">
+          <a href="{% url 'product-detail' product.id %}" class="text-decoration-none text-dark">
+            <div class="card">
+              <img src="{{product.product_image_1.url}}" class="card-img-top" height="200px" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{product.product_name | capfirst}}</h5>
+                <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+                  content. This content is a little bit longer.</p>
+              </div>
+            </div>
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+</div>
+{% endblock body %}

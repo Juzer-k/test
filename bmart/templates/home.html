@@ -1,0 +1,136 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home{% endblock title %}
+
+{% block body %}
+<div class="container-fluid">
+  <div class="container my-3">
+
+    <div class="row row-cols-3 row-cols-md-6">
+
+      <div class="col">
+        <a href="{% url 'all-category' %}" class="text-decoration-none text-dark">
+          <div class="card" style="border: none;">
+            <img src="{% static 'images/favicon.ico'%}" class="card-img-top circle mx-auto d-block my-2" alt="...">
+              <p class="card-text text-center fs-6">All Category</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="{% url 'cloth-category' %}" class="text-decoration-none text-dark">
+          <div class="card" style="border: none;">
+            <img src="{% static 'images/favicon.ico'%}" class="card-img-top circle mx-auto d-block my-2" alt="...">
+              <p class="card-text text-center fs-6">Cloth</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="{% url 'cloth-category' %}" class="text-decoration-none text-dark">
+          <div class="card" style="border: none;">
+            <img src="{% static 'images/favicon.ico'%}" class="card-img-top circle mx-auto d-block my-2" alt="...">
+              <p class="card-text text-center fs-6">Kurta</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="{% url 'cloth-category' %}" class="text-decoration-none text-dark">
+          <div class="card" style="border: none;">
+            <img src="{% static 'images/favicon.ico'%}" class="card-img-top circle mx-auto d-block my-2" alt="...">
+              <p class="card-text text-center fs-6">Rida</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="{% url 'cloth-category' %}" class="text-decoration-none text-dark">
+          <div class="card" style="border: none;">
+            <img src="{% static 'images/favicon.ico'%}" class="card-img-top circle mx-auto d-block my-2" alt="...">
+              <p class="card-text text-center fs-6">Masalla</p>
+          </div>
+        </a>
+      </div>
+
+      <div class="col">
+        <a href="{% url 'cloth-category' %}" class="text-decoration-none text-dark">
+          <div class="card" style="border: none;">
+            <img src="{% static 'images/favicon.ico'%}" class="card-img-top circle mx-auto d-block my-2" alt="...">
+              <p class="card-text text-center fs-6">Jewellery</p>
+          </div>
+        </a>
+      </div>
+
+    </div>
+  </div>
+  {% comment %} slider {% endcomment %}
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active" data-bs-interval="10000">
+        <img src="{%static 'images/BurhaniMart.png'%}" class="d-block w-100" height="300px" alt="...">
+      </div>
+      <div class="carousel-item" data-bs-interval="2000">
+        <img src="{%static 'images/BurhaniMart.png'%}" class="d-block w-100" height="300px" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{%static 'images/BurhaniMart.png'%}" class="d-block w-100" height="300px" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+
+  <!-- Slider 1 -->
+  <h2 class="fw-bold p-3">Best Deals on Cloths</h2>
+  <div class="row row-cols-2 row-cols-md-6 g-4">
+    {% for product in cloth_category_product %}
+
+    <div class="col hello">
+      <a href="{% url 'product-detail' product.id%}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <img src="{{product.product_image_1.url}}" class="card-img-top" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{product.product_name | capfirst}}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <br>
+    {% endfor %}
+  </div>
+  <br>
+
+  <h2 class="fw-bold">Get Best Deals On Emitation Jewellery</h2>
+  <br>
+  <div class="row row-cols-2 row-cols-md-6 g-4">
+
+    {% for product in jewellery_category_product %}
+
+    <div class="col">
+      <a href="{% url 'product-detail' product.id %}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <img src="{{product.product_image_1.url}}" class="card-img-top" height="200px" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{product.product_name | capfirst}}</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional
+              content. This content is a little bit longer.</p>
+          </div>
+        </div>
+      </a>
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+
+
+{% endblock body %}

@@ -1,0 +1,40 @@
+<html>
+  <head>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  </head>
+  <body>
+    <form>
+      <button id="razorpay-payment-btn">Pay with Razorpay</button>
+    </form>
+
+    <script>
+      var razorpay_options = {
+        key: "rzp_test_BTIQ8sPsLHntL6",
+        amount: {{ total_amount }}, // The amount to be charged, dynamically set from the server-side code
+        name: "Your Company",
+        description: "Your Product Description",
+        image: "YOUR_PRODUCT_IMAGE_URL",
+        handler: function (response) {
+          // Handle the payment response here
+        },
+        prefill: {
+          name: "{{ user.username }}",
+          email: "{{ user.email }}",
+        },
+        notes: {
+          address: "{{ current_address.address }}",
+        },
+        theme: {
+          color: "#F37254",
+        },
+      };
+
+      var razorpay_payment_btn = document.getElementById("razorpay-payment-btn");
+      razorpay_payment_btn.onclick = function (e) {
+        var razorpay = new Razorpay(razorpay_options);
+        razorpay.open();
+        e.preventDefault();
+      };
+    </script>
+  </body>
+</html>

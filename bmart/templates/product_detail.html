@@ -1,0 +1,179 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Product-Detail | {{product_detail.product_name}}{% endblock title %}
+
+{% block body %}
+<div class="row container-fluid mx-auto my-3">
+  <div class="col-sm-5">
+    <div class="container">
+
+      {% comment %} Full-width images with number text {% endcomment %}
+      <div class="mySlides">
+        <img src="{{product_detail.product_image_1.url}}" class="img-fluid mx-auto d-block" style="height:400px">
+      </div>
+
+      <div class="mySlides">
+        <img src="{{product_detail.product_image_2.url}}" class="img-fluid mx-auto d-block" style="height:400px">
+      </div>
+
+      <div class="mySlides">
+        <img src="{{product_detail.product_image_3.url}}" class="img-fluid mx-auto d-block" style="height:400px">
+      </div>
+
+      <div class="mySlides">
+        <img src="{{product_detail.product_image_4.url}}" class="img-fluid mx-auto d-block" style="height:400px">
+      </div>
+
+      <div class="mySlides">
+        <img src="{{product_detail.product_image_5.url}}" class="img-fluid mx-auto d-block" style="height:400px">
+      </div>
+
+      <div class="mySlides">
+        <img src="{{product_detail.product_image_5.url}}" class="img-fluid mx-auto d-block" style="height:400px">
+      </div>
+
+
+      {% comment %} Next and previous buttons {% endcomment %}
+      <a class="prev " onclick="plusSlides(-1)">&#10096;</a>
+      <a class="next" onclick="plusSlides(1)">&#10097;</a>
+
+      <br>
+      {% comment %} Thumbnail images {% endcomment %}
+      <div class="row">
+        <div class="column">
+          <img class="demo cursor" src="{{product_detail.product_image_1.url}}" style="height:75px;width:50px;"
+            onclick="currentSlide(1)" alt="">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="{{product_detail.product_image_2.url}}" style="height:75px;width:50px;"
+            onclick="currentSlide(2)" alt="">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="{{product_detail.product_image_3.url}}" style="height:75px; width:50px;"
+            onclick="currentSlide(3)" alt="">
+        </div>
+        <div class="column">
+          
+          <img class="demo cursor" src="{{product_detail.product_image_4.url}}" style="height:75px; width:50px;"
+            onclick="currentSlide(4)" alt="">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="{{product_detail.product_image_5.url}}" style="height:75px; width:50px;"
+            onclick="currentSlide(5)" alt="">
+        </div>
+        <div class="column">
+          <img class="demo cursor" src="{{product_detail.product_image_5.url}}" style="height:75px; width:50px;"
+            onclick="currentSlide(5)" alt="">
+        </div>
+      </div>
+    </div>
+    <br>
+    {% if user.is_authenticated %}
+    {% if product_already_in_cart %}
+    <div class="container my-3 text-center">
+      
+      <a href="{% url 'view-cart-product' %}" class="btn btn-info" style="--bs-btn-font-size: 1.1 rem;">Go to Cart</a>
+      <button class="btn btn-primary" style="--bs-btn-font-size: 1.1 rem;">Buy Now</button>
+    </div>
+    {% else %}
+    <div class="container text-center my-3 ">
+      <form action="/add-to-cart" class="d-inline">
+        <input type="hidden" name="product_id" value="{{product_detail.id}}" id="product_id">
+        {% comment %} Add to Cart button {% endcomment %}
+        <button class="btn btn-danger" style="--bs-btn-font-size: 1.1 rem;">Add To Cart</button>
+        {% comment %} Buy Now Button {% endcomment %}
+        <button class="btn btn-primary" style="--bs-btn-font-size: 1.1 rem;">Buy Now</button>
+      </form>
+    </div>
+    {% endif %}
+    {% endif %}
+
+    {% if not request.user.is_authenticated %}
+    {% comment %} button {% endcomment %}
+    <div class="container text-center">
+      <form action="/add-to-cart" class="d-inline">
+        <input type="hidden" name="product_id" value="{{product_detail.id}}" id="product_id">
+        {% comment %} Add to Cart button {% endcomment %}
+        <button class="btn btn-danger" style="--bs-btn-font-size: 1.1 rem;">Add To Cart</button>
+        {% comment %} Buy Now Button {% endcomment %}
+        <button class="btn btn-primary" style="--bs-btn-font-size: 1.1 rem;">Buy Now</button>
+      </form>
+
+    </div>
+    {% endif %}
+
+  </div>
+  <div class="col-sm-7">
+    <div class="container my-3">
+      {% comment %} product name {% endcomment %}
+      <h2 class="fw-bold">{{product_detail.product_name | capfirst}}</h2>
+      <br>
+      <h3 class="fw-bold">₹{{product_detail.product_discounted_price}}</h3>
+      <p class="fs-5">₹<del class="text-muted">{{product_detail.product_selling_price}}</del> <span
+          class="fs-6 text-dark mx-3">{{product_detail.discount_percentage}}% off</span></p>
+      <p>You Will Save <span class="fw-bold">₹{{product_detail.save_price}}</span> on this Product.</p>
+      <h5 class="mt-5">Available Offers</h5>
+      <ul>
+        <li>Bank Offer 5% Unlimited Cashback on Flipkart Axis Bank Credit</li>
+        <li>Special Price Get extra ₹3000 off (price inclusive of discount)</li>
+        <li>No cost EMI ₹1,667/month. Standard EMI also available</li>
+        <li>Partner Offer ₹2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+      </ul>
+
+      <br>
+
+      <div class="row">
+        <br>
+        {% comment %} product detail {% endcomment %}
+        <h3 class="fw-bold">Product Detail</h3>
+        <br>
+        <div class="container">
+          <ul class="list-group w-75">
+            <li class="list-group-item  d-flex justify-content-between align-items-center borderless">Description
+              <span data-bs-toggle="modal" data-bs-target="#description" class="text-dark badge fs-6"
+                style="cursor: pointer;">{{product_detail.product_description | capfirst | slice:'0:20'}}<span class="text-primary"><small>..Read More</small> </span> 
+             </span>
+            </li>
+            <li class="list-group-item  d-flex justify-content-between align-items-center borderless">Suitable for
+              <span class="text-dark badge fs-6">{{product_detail.product_suitable_for | capfirst}}</span>
+            </li>
+            <li class="list-group-item  d-flex justify-content-between align-items-center borderless">Brand
+              <span class="text-dark badge fs-6">{{product_detail.product_brand | capfirst}}</span>
+            </li>
+            <li class="list-group-item  d-flex justify-content-between align-items-center borderless">Seller
+              <span class="text-dark badge fs-6">{{product_detail.product_seller | capfirst}}</span>
+            </li>
+            <li class="list-group-item  d-flex justify-content-between align-items-center borderless">Category
+              <span class="text-dark badge fs-6">{{product_detail.product_category | capfirst}}</span>
+            </li>
+          </ul>
+          <div class="modal" id="description" tabindex="-1" aria-labelledby="description">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="description">Product Description</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p class="fw-bold text-dark text-break">{{product_detail.product_description}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br><br>
+      {% comment %} like and review product {% endcomment %}
+      <div class="fb-like my-2" data-href="http://127.0.0.1:8000/product-detail/{{product_detail.id}}"
+        data-width="" data-layout="standard" data-action="like" data-size="small" data-share="true"></div>
+      <br>
+      <p class="card-text fw-bold mx-2 " style="font-size:30px">Review Product</p>
+      <div class="fb-comments mx-1" data-href="http://127.0.0.1:8000/product-detail/{{product_detail.id}}" data-width=""
+        data-numposts="5"></div>
+    </div>
+  </div>
+
+</div>
+
+
+{% endblock body %}
