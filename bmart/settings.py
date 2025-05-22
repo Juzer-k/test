@@ -16,7 +16,7 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-SECRET_KEY = env('django-insecure-ua%6@_^fma08zlf4r_=tbp@sswh!e%37c^e)0borhy6jf&-_(*')
+SECRET_KEY = env('SECRET_KEY')
 DEBUG = env.bool('DEBUG', default=False)
 ALLOWED_HOSTS = ['.onrender.com', 'localhost']  # Add your Render URL later
 
