@@ -23,7 +23,7 @@ DEBUG = env.bool('DEBUG', default=False)
 #     environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY',default='django-insecure-ua%6@_^fma08zlf4r_=tbp@sswh!e%37c^e)0borhy6jf&-_(*')
-ALLOWED_HOSTS = ['localhost','bmart-f6tq.onrender.com']  # Add your Render URL later
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'bmart-f6tq.onrender.com']  # Add your Render URL later
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -93,15 +93,15 @@ WSGI_APPLICATION = 'bmart.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': env.db()
-# }
-
 DATABASES = {
-       'default':{ 'ENGINE':'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-       }
-    }
+    'default': env.db()
+}
+
+# DATABASES = {
+#        'default':{ 'ENGINE':'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#        }
+#     }
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
