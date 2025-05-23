@@ -19,8 +19,8 @@ environ.Env.read_env()
 # SECRET_KEY = 'django-insecure-ua%6@_^fma08zlf4r_=tbp@sswh!e%37c^e)0borhy6jf&-_(*'
 
 DEBUG = env.bool('DEBUG', default=False)
-if DEBUG:
-    environ.Env.read_env()
+# if DEBUG:
+#     environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
 ALLOWED_HOSTS = ['localhost','bmart-f6tq.onrender.com']  # Add your Render URL later
@@ -147,3 +147,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 RAZORPAY_KEY_ID = 'rzp_test_BTIQ8sPsLHntL6'
 RAZORPAY_KEY_SECRET = 'cpFO1ZXiCiYFxa1me0ox39Et'
+
+# Add this at the bottom of settings.py
+STATICFILES_DIRS = [
+    BASE_DIR / "static",  # For local development static files
+]
