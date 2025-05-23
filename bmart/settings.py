@@ -16,13 +16,13 @@ import environ
 env = environ.Env()
 environ.Env.read_env()
 
-# SECRET_KEY = 'django-insecure-ua%6@_^fma08zlf4r_=tbp@sswh!e%37c^e)0borhy6jf&-_(*'
+
 
 DEBUG = env.bool('DEBUG', default=False)
 # if DEBUG:
 #     environ.Env.read_env()
 
-SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = env('SECRET_KEY',default='django-insecure-ua%6@_^fma08zlf4r_=tbp@sswh!e%37c^e)0borhy6jf&-_(*')
 ALLOWED_HOSTS = ['localhost','bmart-f6tq.onrender.com']  # Add your Render URL later
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,6 +64,9 @@ MIDDLEWARE = [
 
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 ROOT_URLCONF = 'bmart.urls'
@@ -149,6 +152,3 @@ RAZORPAY_KEY_ID = 'rzp_test_BTIQ8sPsLHntL6'
 RAZORPAY_KEY_SECRET = 'cpFO1ZXiCiYFxa1me0ox39Et'
 
 # Add this at the bottom of settings.py
-STATICFILES_DIRS = [
-    BASE_DIR / "static ",
-]
