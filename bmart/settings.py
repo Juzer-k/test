@@ -22,7 +22,7 @@ if DEBUG:
     environ.Env.read_env()
 
 SECRET_KEY = env('SECRET_KEY')
-ALLOWED_HOSTS = ['bmart-f6tq.onrender.com', 'localhost']  # Add your Render URL later
+ALLOWED_HOSTS = ['localhost','bmart-f6tq.onrender.com']  # Add your Render URL later
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
