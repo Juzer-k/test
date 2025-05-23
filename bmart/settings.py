@@ -150,5 +150,5 @@ RAZORPAY_KEY_SECRET = 'cpFO1ZXiCiYFxa1me0ox39Et'
 
 # Add this at the bottom of settings.py
 STATICFILES_DIRS = [
-    BASE_DIR / "static/additionalcss",  # For local development static files
+    BASE_DIR / "static ",
 ]
